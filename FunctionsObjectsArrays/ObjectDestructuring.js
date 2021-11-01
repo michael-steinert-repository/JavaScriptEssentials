@@ -5,10 +5,17 @@ const getPerson = function () {
         address: {
             city: "City",
             country: "Country"
+        },
+        toString: function () {
+            /* Avoiding the Lexical This */
+            /* Using the That-Pattern or alternative: using a Arrow Function instead of a Function */
+            const that = this;
+            return `${that.name} - ${that.age} - ${that.address.city} - ${that.address.country}`
         }
     }
 }
 const person = getPerson();
+console.log(person.toString());
 
 /* Without Object Destructuring */
 const nameFromPerson = person.name;
@@ -23,3 +30,12 @@ console.log(`${nameFromPerson} - ${ageFromPerson} - ${cityFromPerson} - ${countr
 const {name, age, address: {city, country}} = person;
 
 console.log(`${name} - ${age} - ${city} - ${country}`);
+
+/* Using the Spread Operator to add additional Information */
+const personWithGender = {
+    ...person,
+    gender: "Male"
+}
+
+const {name: nameOfPersonWithGender, gender} = personWithGender;
+console.log(`${nameOfPersonWithGender} - ${gender}`);

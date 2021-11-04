@@ -7,6 +7,21 @@
 - Rejected: Meaning that the Operation failed => .catch()
 */
 const promise = new Promise((resolve, reject) => {
+    return Promise.resolve().then(() => {
+        setTimeout(() => {
+            resolve("Data back from Promise");
+        }, 1111);
+    });
+});
+
+promise.then(response => {
+    /* Takes 1111 Milliseconds to execute but the Application can continue to work */
+    console.log(response);
+}).catch(error => {
+    console.error(error);
+});
+
+const resolveRejectPromise = new Promise((resolve, reject) => {
     /* There will never be a situation where Resolve and Reject are both available */
     setTimeout(() => {
         resolve("Data back from Promise");
@@ -16,10 +31,10 @@ const promise = new Promise((resolve, reject) => {
     }, 3333);
 });
 
-promise.then(response => {
+resolveRejectPromise.then(response => {
     console.log(response);
 }).catch(error => {
-    console.log(error);
+    console.error(error);
 });
 
 const namesPromise = new Promise((resolve, reject) => {
@@ -50,5 +65,5 @@ Promise.all([namesPromise, surnamesPromise]).then(data => {
         console.log(`${names[i]} ${surnames[i]}`);
     }
 }).catch(error => {
-    console.log(error);
+    console.error(error);
 });

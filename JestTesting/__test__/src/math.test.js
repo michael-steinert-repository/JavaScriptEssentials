@@ -35,5 +35,5 @@ test("will throw if input is not a Number", () => {
     /* Given */
     const numbers = [];
     /* When - Then */
-    expect(() => numberOfOccurrences(numbers, "abc")).toThrow("a is not a Number");
+    expect(() => numberOfOccurrences(numbers, "a")).toThrow("a is not a Number");
 });
